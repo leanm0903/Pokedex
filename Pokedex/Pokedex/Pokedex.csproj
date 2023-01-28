@@ -13,5 +13,29 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Autofac" Version="6.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="ViewModels\" />
+    <None Remove="Views\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Interfaces\" />
+    <None Remove="Commons\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Commons\RestService\" />
+    <None Remove="ViewModels\Base\" />
+    <None Remove="Autofac" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Interfaces\" />
+    <Folder Include="Commons\" />
+    <Folder Include="Commons\RestService\" />
+    <Folder Include="ViewModels\Base\" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Pokedex.ViewModels.Base;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,6 +9,7 @@ namespace Pokedex
     {
         public App ()
         {
+            BuildDependencies();
             InitializeComponent();
 
             MainPage = new MainPage();
@@ -23,6 +25,12 @@ namespace Pokedex
 
         protected override void OnResume ()
         {
+        }
+
+        public static void BuildDependencies()
+        {
+
+            ViewModelLocator.Instance.Build();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Pokedex.Views
     {
         public PokemonListView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
