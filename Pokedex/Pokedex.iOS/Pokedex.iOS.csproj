@@ -133,4 +133,11 @@
       <Name>Pokedex</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\Search.imageset" />
+    <Folder Include="Resources\icons" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Search.svg" />
+  </ItemGroup>
 </Project>

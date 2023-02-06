@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Pokedex.Commons.RestService;
 using Pokedex.Models;
+using Pokedex.Models.Response;
 using Pokedex.Services.Interfaces;
 
 namespace Pokedex.Services
@@ -23,10 +24,12 @@ namespace Pokedex.Services
             return this.restService.GetAsync<PokemonDetail>($"{baseUrl}/{name})");
         }
 
-        public Task<List<Pokemon>> GetPokemons(int limit, int offset)
+        public async Task<List<Pokemon>> GetPokemons(int limit, int offset)
         {
-            return this.restService.GetAsync<List<Pokemon>>($"{baseUrl}?limit={limit}&offset={offset})");
+	        var response = await this.restService.GetAsync<GetPokemonsResponse>($"{baseUrl}?limit={limit}&offset={offset})");
+
+	        return response.Results;
         }
-    }
+	}
 }
 

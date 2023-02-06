@@ -1,5 +1,6 @@
 ﻿using System;
 using Pokedex.ViewModels.Base;
+using Pokedex.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,8 +12,7 @@ namespace Pokedex
         {
             BuildDependencies();
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new PokemonListView();
         }
 
         protected override void OnStart ()

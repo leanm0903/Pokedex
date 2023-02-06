@@ -1,34 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pokedex.Views.PokemonListView">
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-            
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+             xmlns:viewModelBase="clr-namespace:Pokedex.ViewModels.Base;assembly=Pokedex"
+             viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+             x:Class="Pokedex.Views.PokemonListView"
+             x:Name ="content">
+    <StackLayout>
+    <Frame BackgroundColor="#303F9F" Margin="0">
+        <StackLayout>
+            <Label Text="Pokemons"
+                   FontSize="Large"
+                   TextColor="#FFFFFF"
+                   Margin="0,30,0,0"
+            />
+        </StackLayout>
+    </Frame>
+    <ListView x:Name="EmployeeView" RefreshCommand="{Binding SetPokemons}"
+              ItemsSource="{Binding Pokemons}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Name}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    <Frame  BackgroundColor="#303F9F" Padding="2">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Button TextColor="#FFFFFF" Text="{Binding LastPage}" Command="{Binding LastPageCommand}"></Button>
+            <Button BorderColor="#FFFFFF" Padding="10" Margin="0,5,0,5" BorderWidth="1"  TextColor="#FFFFFF" Text="{Binding ActualPage}" Command="{Binding SetPokemons}"></Button>
+            <Button TextColor="#FFFFFF" Text="{Binding NextPage}" Command="{Binding NextPageCommand}"></Button>
+        </StackLayout>
+    </Frame>
+</StackLayout>
 </ContentPage>
 

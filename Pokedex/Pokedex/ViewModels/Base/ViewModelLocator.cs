@@ -4,6 +4,8 @@ using System.Reflection;
 using Autofac;
 
 using Pokedex.Commons.RestService;
+using Pokedex.Services;
+using Pokedex.Services.Interfaces;
 using Xamarin.Forms;
 
 namespace Pokedex.ViewModels.Base
@@ -19,7 +21,9 @@ namespace Pokedex.ViewModels.Base
         {
             ContainerBuilder = new ContainerBuilder();
 
-            ContainerBuilder.RegisterType<RestService>().As<IRestService>().SingleInstance() ;
+            ContainerBuilder.RegisterType<RestService>().As<IRestService>().SingleInstance();
+            ContainerBuilder.RegisterType<PokemonService>().As<IPokemonService>().SingleInstance();
+            ContainerBuilder.RegisterType<PokemonListViewModel>().SingleInstance();
         }
 
         public static readonly BindableProperty AutoWireViewModelProperty = BindableProperty.CreateAttached(
@@ -51,7 +55,7 @@ namespace Pokedex.ViewModels.Base
             if (viewModelType != null)
             {
                 var viewModel = container.Resolve(viewModelType) as BaseViewModel;
-                if (viewModel != null)
+                if (viewModel == null)
                 {
                     return;
                 }

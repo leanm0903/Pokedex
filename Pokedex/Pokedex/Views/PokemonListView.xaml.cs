@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pokedex.ViewModels;
+using Pokedex.ViewModels.Base;
 
 namespace Pokedex.Views
 {
