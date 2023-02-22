@@ -19,13 +19,19 @@ namespace Pokedex.Views
             InitializeComponent(); 
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;
 
             await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
+            await Navigation.PushAsync(new PokemonDetailView());
+            
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }

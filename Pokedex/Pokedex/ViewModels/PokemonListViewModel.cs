@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Pokedex.Models;
@@ -68,12 +69,11 @@ namespace Pokedex.ViewModels
 				RaisePropertyChanged(() => ActualPage);
 			}
 		}
-
-		
+			
 		public ICommand SetPokemons { get; }
 		public ICommand NextPageCommand { get; }
 		public ICommand LastPageCommand { get; }
-
+		
 		public PokemonListViewModel(IPokemonService pokemonService)
 		{
 			this.pokemonService = pokemonService;
@@ -81,7 +81,7 @@ namespace Pokedex.ViewModels
 			this.SetPokemons = new Command(async () =>
 			{
 				this.Pokemons =
-					new ObservableCollection<Pokemon>(await this.pokemonService.GetPokemons(this.Limit, this.OffSet));
+					new ObservableCollection<Pokemon>((await this.pokemonService.GetPokemons(this.Limit, this.OffSet)).OrderBy(x =>x.Name));
 			});
 
 			this.NextPageCommand = new Command(async() =>

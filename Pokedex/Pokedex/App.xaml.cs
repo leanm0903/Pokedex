@@ -12,7 +12,7 @@ namespace Pokedex
         {
             BuildDependencies();
             InitializeComponent();
-            MainPage = new PokemonListView();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart ()

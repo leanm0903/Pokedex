@@ -138,6 +138,7 @@
     <Folder Include="Resources\icons" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\home.png" />
     <BundleResource Include="Resources\Search.svg" />
   </ItemGroup>
 </Project>
