@@ -22,53 +22,83 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="{DynamicResource LightPrimary}"  
+                        <Frame   
                            CornerRadius="10" 
-                           BorderColor="LightGray"
-                           Margin="10">
-                            <StackLayout>
-                                <Image Grid.Column="0"  Source="{Binding Detail.Sprites.Front}"></Image>
-                                <Label HorizontalOptions="Center" 
+                           BackgroundColor="{DynamicResource BluePrimary}"
+                          >
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="45"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+                                
+                            <StackLayout 
+                                  Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2">
+                                <Label 
                                    FontSize="13" 
-                                   VerticalTextAlignment="Center" 
                                    TextColor="{DynamicResource Primary}" 
-                                   Text="{Binding Detail.Id}"></Label>
-                                <Label HorizontalOptions="Center" 
-                                   FontSize="13" 
-                                   VerticalTextAlignment="Center" 
-                                   TextColor="{DynamicResource Primary}" 
+                                   TextTransform="Uppercase"
+                                   FontAttributes="Bold"
                                    Text="{Binding Name}"></Label>
-                                <StackLayout HeightRequest="100"
-                                         Margin="20">
-                                    <CollectionView ItemsSource= "{Binding Detail.Types}">
-                                        <CollectionView.ItemsLayout
-                                    x:Name ="type">
-                                            <GridItemsLayout 
-                                                     VerticalItemSpacing="10"
-                                                     Orientation="Vertical">
-                                            </GridItemsLayout>
-                                        </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate >
-                                                <DataTemplate>
-                                                <Frame CornerRadius="12"
-                                                           VerticalOptions="Center"
-                                                        Padding="5"
-                                                           BorderColor="{DynamicResource Primary}"
-                                                           >
-                                                    <StackLayout VerticalOptions="Center"
-                                                                         >
-                                                        <Label TextColor="{DynamicResource Primary}"                                                            
-                                                                   FontSize="12"
-                                                                   Text="{Binding Type.Name}" 
-                                                                   HorizontalTextAlignment="Center">
-                                                        </Label>
-                                                    </StackLayout>
-                                                </Frame>
-                                        </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                </StackLayout>
                             </StackLayout>
+
+
+
+                            <StackLayout Grid.Column="1"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2"
+                                       >
+
+                                <Image  
+                                       Aspect="AspectFit"
+                                       HeightRequest="25"
+                                       Source="pokeball.jpg">
+                                </Image>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2"
+                                       >
+                                <Image  
+                                       Aspect="AspectFit"
+                                       HeightRequest="75"
+                                       VerticalOptions="CenterAndExpand"
+                                       Source="{Binding Detail.Sprites.Other.home.front_default}">
+                                </Image>
+
+                            </StackLayout>
+
+                            <StackLayout    
+                                Grid.Column="0"
+                                Grid.Row="2">
+                                <Frame 
+                                        CornerRadius="12"
+                                        Padding="3"
+                                        VerticalOptions="End"   
+                                        HeightRequest="19"
+                                        BorderColor="{DynamicResource Primary}">
+                                    <Label TextColor="{DynamicResource Primary}"                                                            
+                                                       FontSize="10"
+                                                       Padding="0"
+                                                       Margin="0"
+                                                       TextTransform="Default"
+                                                       Text="{Binding  Detail.Types[0].Type.Name}"
+                                                       HorizontalTextAlignment="Center">
+                                    </Label>
+                                </Frame>
+
+
+                            </StackLayout>
+
+                        </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
