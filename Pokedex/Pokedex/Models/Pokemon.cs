@@ -5,12 +5,14 @@ namespace Pokedex.Models
 {
     public class Pokemon
 	{
-		public Pokemon()
-		{
-		}
-
         public string Name { get; set; }
         public string Url { get; set; }
+        public int Id { get; set; }
+        public PokemonDetail Detail { get; set; }
+
+        public Pokemon()
+		{
+		}
     }
 }
 

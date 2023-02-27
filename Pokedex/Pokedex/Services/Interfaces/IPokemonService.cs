@@ -8,8 +8,10 @@ namespace Pokedex.Services.Interfaces
 {
 	public interface IPokemonService
 	{
-		Task<List<Pokemon>> GetPokemons(int limit = 0, int offset = 20);
-		Task<PokemonDetail> GetPokemonByName(string name);
+		Task<List<Pokemon>> GetPokemons(int limit = 0,int offset = 20);
+        Task<List<PokemonDetail>> GetPokemons(int offset = 20);
+
+        Task<PokemonDetail> GetPokemonDetailByNameOrId(string nameOrId);
     }
 }
 

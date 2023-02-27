@@ -35,6 +35,11 @@ namespace Pokedex.Views
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
+
+        private void pokemons_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            Console.Write(e.ScrollX);
+        }
     }
 }
 

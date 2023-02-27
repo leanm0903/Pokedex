@@ -3,6 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pokedex.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="Primary">#C0392B </Color>
+            <Color x:Key="Secondary">#C0392B</Color>
+            <Color x:Key="Tertiary">#F76D82</Color>
+            <Color x:Key="LightPrimary">#F4F6F9</Color>
+            <Color x:Key="LightSecondary">#E5E8EC</Color>
+            <Color x:Key="LightTertiary">#CBD0D8</Color>
+            <Color x:Key="DarkPrimary">#A9b1Bc</Color>
+            <Color x:Key="DarkSecondary">#646c77</Color>
+            <Color x:Key="DarkTertiary">#424953</Color>
+            <Color x:Key="BluePrimary">#73b1f4</Color>
+            <Color x:Key="BlueSecondary">#5E9CEA</Color>
+            <Color x:Key="BlueTertiary">#4B89DA</Color>
+            <Color x:Key="GreenPrimary">#B4e080</Color>
+            <Color x:Key="GreenSecondary">#9ed36a</Color>
+            <Color x:Key="GreenTertiary">#8ac054</Color>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

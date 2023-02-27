@@ -31,13 +31,17 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Models\Request" />
+    <Folder Include="NewFolder\" />
     <Folder Include="Services\Response" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Interfaces\" />
     <Folder Include="Commons\" />
     <Folder Include="Commons\RestService\" />
     <Folder Include="ViewModels\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\PokedexView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

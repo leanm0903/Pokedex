@@ -1,14 +1,14 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:Pokedex.Views;assembly=Pokedex"
-       BackgroundColor="#303F9F"
-       Shell.FlyoutBackgroundColor="#303F9F"
-       TabBarBackgroundColor="#303F9F"
-       ForegroundColor="White"
-       TabBarTitleColor="White"
-       TabBarUnselectedColor="Gray"
+       BackgroundColor="{DynamicResource Primary}"
+       Shell.FlyoutBackgroundColor="{DynamicResource Tertiary}"
+       TabBarBackgroundColor="{DynamicResource Secondary}"
+       ForegroundColor="{DynamicResource LightPrimary}"
+       TabBarTitleColor="{DynamicResource LightPrimary}"
+       TabBarUnselectedColor="{DynamicResource DarkPrimary}"
+       
        x:Class="Pokedex.AppShell">
-
 
     <TabBar>
         <Tab Title="Pokemons"
@@ -16,7 +16,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:PokemonListView}" />
         </Tab>        
         <Tab Title="Pokemons"
-             Icon="monkey.png">
+             Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate views:PokemonListView}" />
         </Tab>
         <Tab Title="Pokemons"

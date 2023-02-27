@@ -4,54 +4,99 @@
              xmlns:viewModelBase="clr-namespace:Pokedex.ViewModels.Base;assembly=Pokedex"
              viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              NavigationPage.HasNavigationBar="False"
+             Title="Lista de Pokemons"
+             BackgroundColor="{DynamicResource LightSecondary}"
              x:Class="Pokedex.Views.PokemonListView"
              x:Name ="content">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <BoxView>
-        </BoxView>
-        <ListView x:Name="pokemons" 
-                  RefreshCommand="{Binding SetPokemons}"
+        <StackLayout Padding="5">
+            <CollectionView 
+                  x:Name="pokemons"
                   ItemsSource="{Binding Pokemons}"
-                  SelectionMode="None"
-                  ItemTapped="Handle_ItemTapped">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Name}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Frame
-                     HorizontalOptions="CenterAndExpand"
-                     VerticalOptions="End"
-                     BackgroundColor="Transparent"
-                     HasShadow="False"
-                     Padding="0, 10, 0,10">
-            <StackLayout HorizontalOptions="CenterAndExpand"
-                         Orientation="Horizontal">
-                <Button TextColor="#FFFFFF" 
+                   >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="2" 
+                                 Orientation="Vertical"
+                                 VerticalItemSpacing="10"
+                                 HorizontalItemSpacing="10">
+                    </GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="{DynamicResource LightPrimary}"  
+                           CornerRadius="10" 
+                           BorderColor="LightGray"
+                           Margin="10">
+                            <StackLayout>
+                                <Image Grid.Column="0"  Source="{Binding Detail.Sprites.Front}"></Image>
+                                <Label HorizontalOptions="Center" 
+                                   FontSize="13" 
+                                   VerticalTextAlignment="Center" 
+                                   TextColor="{DynamicResource Primary}" 
+                                   Text="{Binding Detail.Id}"></Label>
+                                <Label HorizontalOptions="Center" 
+                                   FontSize="13" 
+                                   VerticalTextAlignment="Center" 
+                                   TextColor="{DynamicResource Primary}" 
+                                   Text="{Binding Name}"></Label>
+                                <StackLayout HeightRequest="100"
+                                         Margin="20">
+                                    <CollectionView ItemsSource= "{Binding Detail.Types}">
+                                        <CollectionView.ItemsLayout
+                                    x:Name ="type">
+                                            <GridItemsLayout 
+                                                     VerticalItemSpacing="10"
+                                                     Orientation="Vertical">
+                                            </GridItemsLayout>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate >
+                                                <DataTemplate>
+                                                <Frame CornerRadius="12"
+                                                           VerticalOptions="Center"
+                                                        Padding="5"
+                                                           BorderColor="{DynamicResource Primary}"
+                                                           >
+                                                    <StackLayout VerticalOptions="Center"
+                                                                         >
+                                                        <Label TextColor="{DynamicResource Primary}"                                                            
+                                                                   FontSize="12"
+                                                                   Text="{Binding Type.Name}" 
+                                                                   HorizontalTextAlignment="Center">
+                                                        </Label>
+                                                    </StackLayout>
+                                                </Frame>
+                                        </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        <Button TextColor="#FFFFFF" 
                         BackgroundColor="#303F9F"
                         Text="{Binding LastPage}" 
                         Command="{Binding LastPageCommand}">
-                </Button>
-                <Button BorderColor="#FFFFFF" 
+        </Button>
+        <Button BorderColor="#FFFFFF" 
                         BorderWidth="1"
                         BackgroundColor="#303F9F"
                         Margin="20,0,20,0"
                         TextColor="#FFFFFF" 
                         Text="{Binding ActualPage}" 
                         Command="{Binding SetPokemons}">
-                    
-                </Button>
-                <Button TextColor="#FFFFFF" 
+
+        </Button>
+        <Button TextColor="#FFFFFF" 
                         BackgroundColor="#303F9F"
                         Text="{Binding NextPage}" 
                         Command="{Binding NextPageCommand}">
-                </Button>
-            </StackLayout>
-        </Frame>
-    </Grid>
+        </Button>
+
+    </StackLayout>
+
+
 </ContentPage>
 

@@ -1,9 +1,15 @@
 ﻿namespace Pokedex.Models
 {
-    public class Type
+    public class PokemonType
     {
-        public int slot { get; set; }
-        public Type type { get; set; }
+        public int Slot { get; set; }
+        public TypeDetail Type { get; set; }
+    }
+    
+    public class TypeDetail
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
     }
 }
 
