@@ -35,7 +35,6 @@
     <Folder Include="Services\Response" />
     <Folder Include="Services\" />
     <Folder Include="Services\Interfaces\" />
-    <Folder Include="Commons\" />
     <Folder Include="Commons\RestService\" />
     <Folder Include="ViewModels\Base\" />
   </ItemGroup>

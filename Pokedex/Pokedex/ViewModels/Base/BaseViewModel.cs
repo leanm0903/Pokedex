@@ -10,7 +10,7 @@ namespace Pokedex.ViewModels.Base
 {
 	public class BaseViewModel  : ExtendedBindableObject
 	{
-		public int Limit => 20;
+		public int Limit => 50;
 		public int OffSet { get; set; }
 		public int PageNumber { get; set; }
 

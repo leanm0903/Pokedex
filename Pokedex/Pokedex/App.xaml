@@ -5,20 +5,30 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#C0392B </Color>
-            <Color x:Key="Secondary">#C0392B</Color>
-            <Color x:Key="Tertiary">#F76D82</Color>
+            <Color x:Key="Secondary">#fd8484</Color>
+            <Color x:Key="Tertiary">#fc6c6d</Color>
             <Color x:Key="LightPrimary">#F4F6F9</Color>
             <Color x:Key="LightSecondary">#E5E8EC</Color>
             <Color x:Key="LightTertiary">#CBD0D8</Color>
             <Color x:Key="DarkPrimary">#A9b1Bc</Color>
             <Color x:Key="DarkSecondary">#646c77</Color>
             <Color x:Key="DarkTertiary">#424953</Color>
-            <Color x:Key="BluePrimary">#73b1f4</Color>
-            <Color x:Key="BlueSecondary">#5E9CEA</Color>
+            <Color x:Key="BluePrimary">#76befe</Color>
+            <Color x:Key="BlueSecondary">#a2d9ff</Color>
             <Color x:Key="BlueTertiary">#4B89DA</Color>
             <Color x:Key="GreenPrimary">#B4e080</Color>
-            <Color x:Key="GreenSecondary">#9ed36a</Color>
-            <Color x:Key="GreenTertiary">#8ac054</Color>
+            <Color x:Key="GreenSecondary">#61e3c9</Color>
+            <Color x:Key="GreenTertiary">#49d0b0</Color>
+            <Color x:Key="YellowPrimary">#ffd76f</Color>
+            <Color x:Key="YellowSecondary">#ffe57f</Color>
+            <Color x:Key="YellowTertiary">#f7db4e</Color>
+            <Color x:Key="BrownPrimary">#b0736d</Color>
+            <Color x:Key="BrownSecondary">#d0aba7</Color>
+            <Color x:Key="BrownTertiary">#e7d5d3</Color>
+            <Color x:Key="PurplePrimary">#9c6efd</Color>
+            <Color x:Key="PurpleSecondary">#b89aff</Color>
+            <Color x:Key="PurpleTertiary">#d9c7ff</Color>
         </ResourceDictionary>
+        
     </Application.Resources>
 </Application>

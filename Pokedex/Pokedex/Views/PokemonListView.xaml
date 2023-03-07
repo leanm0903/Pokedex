@@ -7,26 +7,29 @@
              Title="Lista de Pokemons"
              BackgroundColor="{DynamicResource LightSecondary}"
              x:Class="Pokedex.Views.PokemonListView"
+             Padding="5,0,5,0"
              x:Name ="content">
-        <StackLayout Padding="5">
-            <CollectionView 
+        <ContentPage.Content>
+         
+        <CollectionView 
                   x:Name="pokemons"
                   ItemsSource="{Binding Pokemons}"
-                   >
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="2" 
+                  ItemsUpdatingScrollMode="KeepScrollOffset"
+                  >
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="2" 
                                  Orientation="Vertical"
                                  VerticalItemSpacing="10"
                                  HorizontalItemSpacing="10">
-                    </GridItemsLayout>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame   
+                </GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame   
                            CornerRadius="10" 
-                           BackgroundColor="{DynamicResource BluePrimary}"
+                           BackgroundColor="{Binding PrimaryColor}"
                           >
-                            <Grid>
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -44,21 +47,10 @@
                                    Grid.ColumnSpan="2">
                                 <Label 
                                    FontSize="13" 
-                                   TextColor="{DynamicResource Primary}" 
+                                   TextColor="{DynamicResource LightPrimary}" 
                                    TextTransform="Uppercase"
                                    FontAttributes="Bold"
                                    Text="{Binding Name}"></Label>
-                            </StackLayout>
-                            <StackLayout Grid.Column="1"
-                                         Grid.Row="1"
-                                         Grid.ColumnSpan="2"
-                                       >
-
-                                <Image  
-                                       Aspect="AspectFit"
-                                       HeightRequest="25"
-                                       Source="pokeball.jpg">
-                                </Image>
                             </StackLayout>
                             <StackLayout Grid.Column="1"
                                          Grid.Row="1"
@@ -68,7 +60,10 @@
                                        Aspect="AspectFit"
                                        HeightRequest="75"
                                        VerticalOptions="CenterAndExpand"
-                                       Source="{Binding Detail.Sprites.Other.home.front_default}">
+                                 >
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding Detail.Sprites.Other.home.front_default}" CacheValidity="1" CachingEnabled="true"/>
+                                    </Image.Source>
                                 </Image>
 
                             </StackLayout>
@@ -81,9 +76,10 @@
                                         Padding="3"
                                         VerticalOptions="End"   
                                         HeightRequest="19"
-                                        BorderColor="{DynamicResource Primary}">
-                                    <Label TextColor="{DynamicResource Primary}"                                                            
-                                                       FontSize="10"
+                                        
+                                        BackgroundColor="{Binding SecondaryColor}">
+                                    <Label TextColor="{DynamicResource LightPrimary}"                                                                        
+                                           FontSize="10"
                                                        Padding="0"
                                                        Margin="0"
                                                        TextTransform="Default"
@@ -93,33 +89,11 @@
                                 </Frame>
                             </StackLayout>
                         </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-
-        <Button TextColor="#FFFFFF" 
-                        BackgroundColor="#303F9F"
-                        Text="{Binding LastPage}" 
-                        Command="{Binding LastPageCommand}">
-        </Button>
-        <Button BorderColor="#FFFFFF" 
-                        BorderWidth="1"
-                        BackgroundColor="#303F9F"
-                        Margin="20,0,20,0"
-                        TextColor="#FFFFFF" 
-                        Text="{Binding ActualPage}" 
-                        Command="{Binding SetPokemons}">
-
-        </Button>
-        <Button TextColor="#FFFFFF" 
-                        BackgroundColor="#303F9F"
-                        Text="{Binding NextPage}" 
-                        Command="{Binding NextPageCommand}">
-        </Button>
-
-    </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
 
 
 </ContentPage>

@@ -71,7 +71,8 @@ namespace Pokedex.ViewModels
 		}
 			
 		public ICommand SetPokemons { get; }
-		public ICommand NextPageCommand { get; }
+		public ICommand GetPokemonColor { get; }
+        public ICommand NextPageCommand { get; }
 		public ICommand LastPageCommand { get; }
 		
 		public PokemonListViewModel(IPokemonService pokemonService)
@@ -90,8 +91,10 @@ namespace Pokedex.ViewModels
 				this.NextPage++;
 				this.LastPage++;
 				this.OffSet = this.Limit + this.OffSet;
-				this.Pokemons =
-					new ObservableCollection<Pokemon>(await this.pokemonService.GetPokemons(this.Limit, this.OffSet));
+				var pokemons = await this.pokemonService.GetPokemons(this.Limit, this.OffSet);
+
+				pokemons.ForEach(x => this.Pokemons.Add(x));
+               
 			});
 			
 			this.LastPageCommand = new Command(async() =>
@@ -109,6 +112,7 @@ namespace Pokedex.ViewModels
 		{
 			this.Pokemons = new ObservableCollection<Pokemon>
 				(await this.pokemonService.GetPokemons(this.Limit, this.OffSet));
+
 		}
 	}
 }
