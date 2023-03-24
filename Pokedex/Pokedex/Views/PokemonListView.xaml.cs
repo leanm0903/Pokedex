@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Pokedex.ViewModels;
+using System.Threading.Tasks;
 
 namespace Pokedex.Views
 {
@@ -20,16 +21,9 @@ namespace Pokedex.Views
             base.OnAppearing();
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
         {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-            await Navigation.PushAsync(new PokemonDetailView());
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            var easda = e;
         }
     }
 }

@@ -29,9 +29,7 @@
     <None Remove="Autofac" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Models\Request" />
-    <Folder Include="NewFolder\" />
     <Folder Include="Services\Response" />
     <Folder Include="Services\" />
     <Folder Include="Services\Interfaces\" />
@@ -39,6 +37,9 @@
     <Folder Include="ViewModels\Base\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="CustomControls\TabbedPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\PokedexView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

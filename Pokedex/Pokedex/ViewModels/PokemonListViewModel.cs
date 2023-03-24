@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Pokedex.Models;
 using Pokedex.Services.Interfaces;
 using Pokedex.ViewModels.Base;
+using Pokedex.Views;
 using Xamarin.Forms;
 
 namespace Pokedex.ViewModels
@@ -71,10 +72,10 @@ namespace Pokedex.ViewModels
 		}
 			
 		public ICommand SetPokemons { get; }
-		public ICommand GetPokemonColor { get; }
         public ICommand NextPageCommand { get; }
 		public ICommand LastPageCommand { get; }
-		
+		public ICommand ItemSelectedCommand { get; }
+
 		public PokemonListViewModel(IPokemonService pokemonService)
 		{
 			this.pokemonService = pokemonService;
@@ -82,10 +83,10 @@ namespace Pokedex.ViewModels
 			this.SetPokemons = new Command(async () =>
 			{
 				this.Pokemons =
-					new ObservableCollection<Pokemon>((await this.pokemonService.GetPokemons(this.Limit, this.OffSet)).OrderBy(x =>x.Name));
+					new ObservableCollection<Pokemon>((await this.pokemonService.GetPokemons(this.Limit, this.OffSet)).OrderBy(x => x.Name));
 			});
 
-			this.NextPageCommand = new Command(async() =>
+			this.NextPageCommand = new Command(async () =>
 			{
 				this.ActualPage++;
 				this.NextPage++;
@@ -94,10 +95,10 @@ namespace Pokedex.ViewModels
 				var pokemons = await this.pokemonService.GetPokemons(this.Limit, this.OffSet);
 
 				pokemons.ForEach(x => this.Pokemons.Add(x));
-               
+
 			});
-			
-			this.LastPageCommand = new Command(async() =>
+
+			this.LastPageCommand = new Command(async () =>
 			{
 				this.ActualPage--;
 				this.NextPage--;
@@ -106,14 +107,23 @@ namespace Pokedex.ViewModels
 				this.Pokemons =
 					new ObservableCollection<Pokemon>(await this.pokemonService.GetPokemons(this.Limit, this.OffSet));
 			});
+
+			this.ItemSelectedCommand = new Command<Pokemon>(async (Pokemon pokemon) =>
+			{
+				if (string.IsNullOrEmpty(pokemon?.Name)) return;
+
+				var url = $"{nameof(PokemonDetailView)}?Name={pokemon.Name}";
+
+                await Shell.Current.GoToAsync(url, true);
+			});
 		}
 
-		public override async Task InitializeAsync(object navigationData)
+        public override async Task InitializeAsync(object navigationData)
 		{
 			this.Pokemons = new ObservableCollection<Pokemon>
 				(await this.pokemonService.GetPokemons(this.Limit, this.OffSet));
 
 		}
-	}
+    }
 }
 

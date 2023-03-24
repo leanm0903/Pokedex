@@ -29,7 +29,8 @@ namespace Pokedex.Commons.Dictionaries
             { PokemonTypes.Shadow, (Color) Application.Current.Resources[ColorKey.LightTertiary] },
             { PokemonTypes.Fire, (Color) Application.Current.Resources[ColorKey.Tertiary] },
             { PokemonTypes.Rock, (Color) Application.Current.Resources[ColorKey.LightTertiary] },
-            { PokemonTypes.Grass, (Color) Application.Current.Resources[ColorKey.GreenTertiary] }
+            { PokemonTypes.Grass, (Color) Application.Current.Resources[ColorKey.GreenTertiary] },
+            { PokemonTypes.Ground, (Color) Application.Current.Resources[ColorKey.BrownTertiary] }
         };
         private static Dictionary<string, Color> secondaryColor = new Dictionary<string, Color>
         {
@@ -49,8 +50,9 @@ namespace Pokedex.Commons.Dictionaries
             { PokemonTypes.Steel, (Color) Application.Current.Resources[ColorKey.LightTertiary] },
             { PokemonTypes.Shadow, (Color) Application.Current.Resources[ColorKey.LightTertiary] },
             { PokemonTypes.Fire, (Color) Application.Current.Resources[ColorKey.Secondary] },
-            { PokemonTypes.Rock, (Color) Application.Current.Resources[ColorKey.LightSecondary] },
-            { PokemonTypes.Grass, (Color) Application.Current.Resources[ColorKey.GreenSecondary] }
+            { PokemonTypes.Rock, (Color) Application.Current.Resources[ColorKey.Secondary] },
+            { PokemonTypes.Grass, (Color) Application.Current.Resources[ColorKey.GreenSecondary] },
+            { PokemonTypes.Ground, (Color) Application.Current.Resources[ColorKey.BrownSecondary] }
         };
 
     }

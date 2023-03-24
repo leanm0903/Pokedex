@@ -5,6 +5,7 @@ namespace Pokedex.Models
 {
     public class PokemonDetail
     {
+
         public List<Ability> Abilities { get; set; }
 
         [JsonProperty("base_experience")]

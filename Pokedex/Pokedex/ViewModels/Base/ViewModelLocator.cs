@@ -24,6 +24,7 @@ namespace Pokedex.ViewModels.Base
             ContainerBuilder.RegisterType<RestService>().As<IRestService>().SingleInstance();
             ContainerBuilder.RegisterType<PokemonService>().As<IPokemonService>().SingleInstance();
             ContainerBuilder.RegisterType<PokemonListViewModel>().SingleInstance();
+            ContainerBuilder.RegisterType<PokemonDetailViewModel>().SingleInstance();
         }
 
         public static readonly BindableProperty AutoWireViewModelProperty = BindableProperty.CreateAttached(

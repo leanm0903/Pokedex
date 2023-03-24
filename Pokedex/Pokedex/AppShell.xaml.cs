@@ -1,3 +1,4 @@
+using Pokedex.Views;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,6 +11,7 @@ namespace Pokedex
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(PokemonDetailView), typeof(PokemonDetailView));
         }
     }
 }
