@@ -3,13 +3,24 @@
              xmlns:viewModelBase="clr-namespace:Pokedex.ViewModels.Base;assembly=Pokedex"
              viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              x:Class="Pokedex.Views.PokemonDetailView"
-             
-             x:Name ="content" BackgroundColor="{DynamicResource Primary}">
+             x:Name ="content" 
+             BackgroundColor="{DynamicResource Primary}">
 
 
     <ContentPage.Content>
 
-        <Grid >
+
+        <Grid>
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer 
+                                Direction="Left"
+                                Command="{Binding Path=BindingContext.GetPreviusDetail,
+                                Source={x:Reference content}}"/>
+                <SwipeGestureRecognizer 
+                                Direction="Right"
+                                Command="{Binding Path=BindingContext.GetNextDetail,
+                                Source={x:Reference content}}"/>
+            </Grid.GestureRecognizers>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"></RowDefinition>
                 <RowDefinition Height="150"></RowDefinition>
@@ -46,7 +57,21 @@
                     RowDefinitions="40,20,*"
                     ColumnDefinitions="130,*"
                  >
-                    <FlexLayout 
+                </Grid>
+            </Frame>
+            <StackLayout
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+             >
+                <Image
+                    >
+                    <Image.Source>
+                        <UriImageSource 
+                        Uri="{Binding Detail.Sprites.Other.home.front_default}" 
+                        CachingEnabled="True"/>
+                    </Image.Source>
+                </Image>
+                <FlexLayout 
                         Grid.Row="0"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
@@ -54,116 +79,99 @@
                         AlignContent="Center"
                         JustifyContent="SpaceEvenly"
                         >
-                        <StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnNavTapped"
-                                                      NumberOfTapsRequired="1"></TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
-                            <Label 
+                    <StackLayout>
+                        <Label 
                                     Text="About">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnNavTapped"
-                                                      NumberOfTapsRequired="1"></TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            
+                        </Label>
 
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="Base Stats"></Label>
-                            <BoxView
-                                    Color="Gray"
-                                    HeightRequest="2"
-                                    HorizontalOptions="Fill">
-                            </BoxView>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="Evolution"></Label>
-                            <BoxView
-                                    Color="Gray"
-                                    HeightRequest="2"
-                                    HorizontalOptions="Fill">
-                            </BoxView>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="Movies"></Label>
-                            <BoxView
-                                    Color="Gray"
-                                    HeightRequest="2"
-                                    HorizontalOptions="Fill">
-                            </BoxView>
-                        </StackLayout>
-                    </FlexLayout>
 
-                    <StackLayout
+                    </StackLayout>
+                    <StackLayout x:Name="BaseStats">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path= BindingContext.SetScreenName,
+                                                            Source={x:Reference content}}"
+                                                  CommandParameter="BaseStats"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="Base Stats"></Label>
+                        <BoxView
+                                    Color="Gray"
+                                    HeightRequest="2"
+                                    IsVisible="{Binding IsVisible, ConverterParameter=}"
+                                    HorizontalOptions="Fill">
+                        </BoxView>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Evolution"></Label>
+                        <BoxView
+                                    Color="Gray"
+                                    HeightRequest="2"
+                                    HorizontalOptions="Fill">
+                        </BoxView>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Movies"></Label>
+                        <BoxView
+                                    Color="Gray"
+                                    HeightRequest="2"
+                                    HorizontalOptions="Fill">
+                        </BoxView>
+                    </StackLayout>
+                </FlexLayout>
+
+                <StackLayout
                         Grid.Row="2"
                         Grid.Column="0"
                         HorizontalOptions="Center"
                         >
-                        <Label 
+                    <Label 
                             Text="Species"
                             FontAttributes="Bold"
                             FontSize="15"
                             TextColor="{DynamicResource DarkPrimary}"></Label>
-                        <Label 
+                    <Label 
                             Text="Height"
                             FontAttributes="Bold"
                             FontSize="15"
                             TextColor="{DynamicResource DarkPrimary}"></Label>
-                        <Label 
+                    <Label 
                             Text="Weight"
                             FontAttributes="Bold"
                             FontSize="15"
                             TextColor="{DynamicResource DarkPrimary}"></Label>
-                        <Label 
+                    <Label 
                             Text="Abilities"
                             FontAttributes="Bold"
                             FontSize="15"
                             TextColor="{DynamicResource DarkPrimary}"></Label>
 
-                    </StackLayout>
-                    <StackLayout
+                </StackLayout>
+                <StackLayout
                         Grid.Row="2"
                         Grid.Column="1"
                         >
-                        <Label 
+                    <Label 
                             Text="{Binding Detail.Species.name}"
                             FontSize="15"
                             FontAttributes="Bold"
                             TextColor="{DynamicResource DarkTertiary}"></Label>
-                        <Label 
+                    <Label 
                             Text="{Binding Detail.Height}"
                             FontSize="15"
                             FontAttributes="Bold"
                             TextColor="{DynamicResource DarkTertiary}"></Label>
-                        <Label 
+                    <Label 
                             Text="{Binding Detail.Weight}"
                             FontSize="15"
                             FontAttributes="Bold"
                             TextColor="{DynamicResource DarkTertiary}"></Label>
-                        <Label 
+                    <Label 
                             Text="{Binding Abilities}"
                             FontSize="15"
                             FontAttributes="Bold"
                             TextColor="{DynamicResource DarkTertiary}"></Label>
 
-                    </StackLayout>
+                </StackLayout>
 
-
-                </Grid>
-            </Frame>
-            <StackLayout
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-             >
-                <Image>
-                    <Image.Source>
-                        <UriImageSource 
-                        Uri="{Binding Detail.Sprites.Other.home.front_default}" 
-                        CachingEnabled="True"/>
-                    </Image.Source>
-                </Image>
-                
             </StackLayout>
      
 

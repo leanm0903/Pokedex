@@ -16,7 +16,7 @@ namespace Pokedex.Views
             }
         }
 
-    void LoadPokemon(string name)
+        void LoadPokemon(string name)
         {
             try
             {
@@ -33,16 +33,6 @@ namespace Pokedex.Views
         public PokemonDetailView()
         {
             InitializeComponent();
-        }
-
-        private void OnNavTapped(object sender, EventArgs e)
-        {
-            var events = e;
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
         }
     }
 }

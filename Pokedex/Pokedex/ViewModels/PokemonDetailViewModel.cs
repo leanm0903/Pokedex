@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,6 +16,7 @@ namespace Pokedex.ViewModels
 
         public string Name { get; set; }
         private PokemonDetail detail;
+        private string nameScreen;
         private string abilities;
         private readonly IPokemonService pokemonService;
 
@@ -44,7 +46,39 @@ namespace Pokedex.ViewModels
 
         }
 
+        public string NameScreen
+        {
+            get
+            {
+                return nameScreen;
+            }
+            set
+            {
+                nameScreen = value;
+                RaisePropertyChanged(() => NameScreen);
+            }
+
+        }
         public ICommand GetDetail { get; }
+
+        public ICommand GetNextDetail => new Command(async() =>
+        {
+            var nextId = detail.Id + 1;
+            await this.SetDetail(nextId.ToString());
+        });
+
+        public ICommand GetPreviusDetail => new Command( async() =>
+        {
+            var nextId = detail.Id -1;
+            if(nextId != 0)
+            {
+                await this.SetDetail(nextId.ToString());
+            }
+        });
+        public ICommand SetScreenName => new Command<string>((string name) =>
+        {
+            this.NameScreen = name;
+        });
 
         public PokemonDetailViewModel(IPokemonService pokemonService)
         {
@@ -53,14 +87,19 @@ namespace Pokedex.ViewModels
 
             GetDetail = new Command(async () =>
             {
-                Detail = await this.pokemonService.GetPokemonDetailByNameOrId(Name);
-                Abilities = SetAbilities();
+                await SetDetail(this.Name);
             });
+        }
+
+        private async Task SetDetail(string nameOrId)
+        {
+            Detail = await this.pokemonService.GetPokemonDetailByNameOrId(nameOrId);
+            Abilities = SetAbilities();
         }
 
         public override async Task InitializeAsync(object navigationData)
         {
-            GetDetail.Execute(null);               
+            GetDetail.Execute(null);           
         }
 
         public string SetAbilities()
@@ -79,6 +118,11 @@ namespace Pokedex.ViewModels
             }
 
             return abilities;
+        }
+
+        public bool IsVisible(string name)
+        {
+            return name == this.NameScreen;
         }
     }
 }

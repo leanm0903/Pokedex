@@ -20,11 +20,6 @@ namespace Pokedex.Views
         {
             base.OnAppearing();
         }
-
-        private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
-        {
-            var easda = e;
-        }
     }
 }
 
