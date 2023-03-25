@@ -96,7 +96,6 @@
                         <BoxView
                                     Color="Gray"
                                     HeightRequest="2"
-                                    IsVisible="{Binding IsVisible, ConverterParameter=}"
                                     HorizontalOptions="Fill">
                         </BoxView>
                     </StackLayout>
