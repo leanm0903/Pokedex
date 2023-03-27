@@ -4,7 +4,7 @@
              x:Class="Pokedex.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#C0392B </Color>
+            <Color x:Key="Primary">#C0392B</Color>
             <Color x:Key="Secondary">#fd8484</Color>
             <Color x:Key="Tertiary">#fc6c6d</Color>
             <Color x:Key="LightPrimary">#F4F6F9</Color>
@@ -28,7 +28,29 @@
             <Color x:Key="PurplePrimary">#9c6efd</Color>
             <Color x:Key="PurpleSecondary">#b89aff</Color>
             <Color x:Key="PurpleTertiary">#d9c7ff</Color>
+
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#2196F3" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <Style x:Key="ButtonDisabledStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#2196F3" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="BorderColor" Value="#2196F3" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="NavStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#425953" />
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
         </ResourceDictionary>
-        
+
     </Application.Resources>
 </Application>

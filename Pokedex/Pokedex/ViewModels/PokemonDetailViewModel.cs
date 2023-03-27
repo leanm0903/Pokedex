@@ -1,13 +1,15 @@
-using System;
-using System.Collections.ObjectModel;
-using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using Xamarin.Forms;
+
 using Pokedex.Models;
+using Pokedex.Models.Interfaces;
+using Pokedex.Services.Domain;
 using Pokedex.Services.Interfaces;
 using Pokedex.ViewModels.Base;
-using Xamarin.Forms;
 
 namespace Pokedex.ViewModels
 {
@@ -16,9 +18,10 @@ namespace Pokedex.ViewModels
 
         public string Name { get; set; }
         private PokemonDetail detail;
-        private string nameScreen;
-        private string abilities;
+        private int positionSelected;
         private readonly IPokemonService pokemonService;
+
+        private List<IDetailModel> detailInfo;
 
         public PokemonDetail Detail
         {
@@ -32,34 +35,34 @@ namespace Pokedex.ViewModels
                 RaisePropertyChanged(() => Detail);
             }
         }
-        public string Abilities
+
+        public List<IDetailModel> DetailInfo
         {
             get
             {
-                return abilities;
+                return this.detailInfo ?? new List<IDetailModel>();
             }
             set
             {
-                abilities = value;
-                RaisePropertyChanged(() => Abilities);
+                detailInfo = value;
+                RaisePropertyChanged(() => DetailInfo);
             }
-
         }
 
-        public string NameScreen
+        public int PositionSelected
         {
-            get
-            {
-                return nameScreen;
-            }
             set
             {
-                nameScreen = value;
-                RaisePropertyChanged(() => NameScreen);
-            }
+                positionSelected = value;
+                RaisePropertyChanged(() => PositionSelected);
 
+            }
+            get => positionSelected;
         }
+
         public ICommand GetDetail { get; }
+        public ICommand SelectItemCommand { get => new Command<string>((param) => PositionSelected = int.Parse(param)); }
+
 
         public ICommand GetNextDetail => new Command(async() =>
         {
@@ -75,10 +78,7 @@ namespace Pokedex.ViewModels
                 await this.SetDetail(nextId.ToString());
             }
         });
-        public ICommand SetScreenName => new Command<string>((string name) =>
-        {
-            this.NameScreen = name;
-        });
+
 
         public PokemonDetailViewModel(IPokemonService pokemonService)
         {
@@ -88,41 +88,26 @@ namespace Pokedex.ViewModels
             GetDetail = new Command(async () =>
             {
                 await SetDetail(this.Name);
+
+                this.detailInfo = new List<IDetailInfoService>
+                {
+                    new AboutService(Detail),
+                    new BaseStatsService(Detail),
+                    new MovieService(Detail),
+                    new EvolutionService(Detail),
+
+                }.Select(x => x.CreateDetail()).ToList();
             });
         }
 
         private async Task SetDetail(string nameOrId)
         {
             Detail = await this.pokemonService.GetPokemonDetailByNameOrId(nameOrId);
-            Abilities = SetAbilities();
         }
 
         public override async Task InitializeAsync(object navigationData)
         {
             GetDetail.Execute(null);           
-        }
-
-        public string SetAbilities()
-        {
-            var abilities = string.Empty;
-
-            if(detail?.Abilities != null)
-            {
-
-                foreach (var ability in detail.Abilities)
-                {
-                    abilities = abilities + ability.ability.Name + ",";
-                }
-                abilities = abilities.Remove(abilities.Length - 1);
-
-            }
-
-            return abilities;
-        }
-
-        public bool IsVisible(string name)
-        {
-            return name == this.NameScreen;
         }
     }
 }

@@ -2,11 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModelBase="clr-namespace:Pokedex.ViewModels.Base;assembly=Pokedex"
              viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+             xmlns:local="clr-namespace:Pokedex.Views"
+             xmlns:converter="clr-namespace:Pokedex.Commons.Converters"
              x:Class="Pokedex.Views.PokemonDetailView"
              x:Name ="content" 
              BackgroundColor="{DynamicResource Primary}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CarouselDataTemplateSelector x:Key="CarouselDataTemplateSelector"/>
+            <converter:ColorConverter x:Key="colorConverter"/>
 
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
 
@@ -61,8 +69,7 @@
             </Frame>
             <StackLayout
                     Grid.Row="1"
-                    Grid.RowSpan="2"
-             >
+                    Grid.RowSpan="2">
                 <Image
                     >
                     <Image.Source>
@@ -80,102 +87,119 @@
                         JustifyContent="SpaceEvenly"
                         >
                     <StackLayout>
-                        <Label 
-                                    Text="About">
+                        <Label Text="About">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                         Binding="{Binding PositionSelected}"
+                                         Value="0"
+                                         >
+                                    <Setter Property="Style" Value="{StaticResource NavStyle}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+
                         </Label>
+                        <BoxView BackgroundColor="{Binding PositionSelected, Converter={StaticResource colorConverter}, ConverterParameter=0}"
+                                 HeightRequest="2">
 
-
+                        </BoxView>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path= BindingContext.SelectItemCommand,
+                                                            Source={x:Reference content}}"
+                                                  CommandParameter="0">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        
                     </StackLayout>
                     <StackLayout x:Name="BaseStats">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path= BindingContext.SetScreenName,
+                            <TapGestureRecognizer Command="{Binding Path= BindingContext.SelectItemCommand,
                                                             Source={x:Reference content}}"
-                                                  CommandParameter="BaseStats"></TapGestureRecognizer>
+                                                  CommandParameter="1">
+                            </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
-                        <Label Text="Base Stats"></Label>
-                        <BoxView
-                                    Color="Gray"
-                                    HeightRequest="2"
-                                    HorizontalOptions="Fill">
+
+                        <Label Text="Base Stats">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                         Binding="{Binding PositionSelected}"
+                                         Value="1"
+                                         >
+                                    <Setter Property="Style" Value="{StaticResource NavStyle}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <BoxView BackgroundColor="{Binding PositionSelected, Converter={StaticResource colorConverter}, ConverterParameter=1}"
+                                 HeightRequest="2">
+                            
                         </BoxView>
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="Evolution"></Label>
-                        <BoxView
-                                    Color="Gray"
-                                    HeightRequest="2"
-                                    HorizontalOptions="Fill">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path= BindingContext.SelectItemCommand,
+                                                            Source={x:Reference content}}"
+                                                  CommandParameter="2">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="Evolution">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                         Binding="{Binding PositionSelected}"
+                                         Value="2"
+                                         >
+                                    <Setter Property="Style" Value="{StaticResource NavStyle}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+
+                        </Label>
+                        <BoxView BackgroundColor="{Binding PositionSelected, Converter={StaticResource colorConverter}, ConverterParameter=2}"
+                                 HeightRequest="2">
+
                         </BoxView>
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="Movies"></Label>
-                        <BoxView
-                                    Color="Gray"
-                                    HeightRequest="2"
-                                    HorizontalOptions="Fill">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path= BindingContext.SelectItemCommand,
+                                                            Source={x:Reference content}}"
+                                                  CommandParameter="3">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="Movies">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                         Binding="{Binding PositionSelected}"
+                                         Value="3"
+                                         >
+                                    <Setter Property="Style" Value="{StaticResource NavStyle}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+
+                        </Label>
+                        <BoxView BackgroundColor="{Binding PositionSelected, Converter={StaticResource colorConverter}, ConverterParameter=3}"
+                                 HeightRequest="2">
+
                         </BoxView>
                     </StackLayout>
                 </FlexLayout>
-
-                <StackLayout
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        HorizontalOptions="Center"
-                        >
-                    <Label 
-                            Text="Species"
-                            FontAttributes="Bold"
-                            FontSize="15"
-                            TextColor="{DynamicResource DarkPrimary}"></Label>
-                    <Label 
-                            Text="Height"
-                            FontAttributes="Bold"
-                            FontSize="15"
-                            TextColor="{DynamicResource DarkPrimary}"></Label>
-                    <Label 
-                            Text="Weight"
-                            FontAttributes="Bold"
-                            FontSize="15"
-                            TextColor="{DynamicResource DarkPrimary}"></Label>
-                    <Label 
-                            Text="Abilities"
-                            FontAttributes="Bold"
-                            FontSize="15"
-                            TextColor="{DynamicResource DarkPrimary}"></Label>
-
+                <StackLayout>
+                    <Grid Padding="20"
+                          ColumnDefinitions="*, *"
+                          RowDefinitions="Auto, *">
+                        <CarouselView Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="1"
+                                    ItemTemplate="{StaticResource CarouselDataTemplateSelector}"
+                                    IsSwipeEnabled="True" 
+                                    IsScrollAnimated="True" 
+                                    ItemsSource="{Binding DetailInfo}"                     
+                                    Position="{Binding PositionSelected}">
+                        </CarouselView>
+                    </Grid>
                 </StackLayout>
-                <StackLayout
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        >
-                    <Label 
-                            Text="{Binding Detail.Species.name}"
-                            FontSize="15"
-                            FontAttributes="Bold"
-                            TextColor="{DynamicResource DarkTertiary}"></Label>
-                    <Label 
-                            Text="{Binding Detail.Height}"
-                            FontSize="15"
-                            FontAttributes="Bold"
-                            TextColor="{DynamicResource DarkTertiary}"></Label>
-                    <Label 
-                            Text="{Binding Detail.Weight}"
-                            FontSize="15"
-                            FontAttributes="Bold"
-                            TextColor="{DynamicResource DarkTertiary}"></Label>
-                    <Label 
-                            Text="{Binding Abilities}"
-                            FontSize="15"
-                            FontAttributes="Bold"
-                            TextColor="{DynamicResource DarkTertiary}"></Label>
-
-                </StackLayout>
-
             </StackLayout>
-     
+
 
         </Grid>
-  
+
     </ContentPage.Content>
 
 </ContentPage>
